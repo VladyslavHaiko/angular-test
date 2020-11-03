@@ -1,0 +1,18 @@
+<div>
+  <h1>Form id: {{data.form.id}}</h1>
+  <div>Type: {{data.form.type}}</div>
+  <div *ngFor="let fieldValue of data.form.form_field_values; let i = index" class="border border-info mt-1">
+    <div> #{{fieldValue.id}}</div>
+    <div><b>{{data.formFields[i].title}}</b></div>
+    <div><b>value: {{fieldValue.value}}</b></div>
+    <div>form id: {{fieldValue.form_id}}</div>
+    <div>created: {{fieldValue.created_at | date}}</div>
+    <div>updated: {{fieldValue.updated_at | date}}</div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button
+          (click)="closeDialog()"
+  >Close
+  </button>
+</div>

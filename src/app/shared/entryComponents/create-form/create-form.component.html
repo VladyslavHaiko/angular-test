@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+  <ng-container *ngFor="let formField of formFields; let i = index">
+    <div [formGroup]="form.controls[i]" class="d-flex align-items-center">
+      <mat-form-field class="example-form-field mr-1">
+        <mat-label>{{formField.title}}</mat-label>
+        <input matInput
+               [type]="formField.type"
+               formControlName="value"
+               [min]="formField.min"
+               [max]="formField.max"
+               [maxlength]="formField.max_length"
+               [required]="formField.is_required"
+        >
+      </mat-form-field>
+    </div>
+  </ng-container>
+</form>
+<div mat-dialog-actions>
+  <button mat-button
+          (click)="closeDialog()"
+  >Close
+  </button>
+  <button mat-button
+          [disabled]="form.invalid"
+          (click)="create()"
+  >Create
+  </button>
+</div>

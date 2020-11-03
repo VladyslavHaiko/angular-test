@@ -1,0 +1,52 @@
+<div>
+  <div>
+    <mat-card class="d-flex justify-content-between">
+      <div>
+        <mat-form-field class="example-form-field">
+          <mat-label>Search</mat-label>
+          <input matInput type="text" [formControl]="searchControl">
+        </mat-form-field>
+        <button mat-stroked-button
+                class="ml-3"
+                (click)="openDialog()">
+          <mat-icon>library_add</mat-icon>
+          Add Form
+        </button>
+        <button mat-stroked-button
+                class="ml-3"
+                (click)="refreshTable()">
+          <mat-icon>refresh</mat-icon>
+          Refresh
+        </button>
+      </div>
+
+      <form [formGroup]="filterForm">
+        <mat-form-field>
+          <mat-label>Choose a create date</mat-label>
+          <label>
+            <input matInput [matDatepicker]="created_at" formControlName="created_at">
+          </label>
+          <mat-datepicker-toggle matSuffix [for]="created_at"></mat-datepicker-toggle>
+          <mat-datepicker #created_at></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="ml-3">
+          <mat-label>Choose a update date</mat-label>
+          <label>
+            <input matInput [matDatepicker]="updated_at" formControlName="updated_at">
+          </label>
+          <mat-datepicker-toggle matSuffix [for]="updated_at"></mat-datepicker-toggle>
+          <mat-datepicker #updated_at></mat-datepicker>
+        </mat-form-field>
+      </form>
+    </mat-card>
+  </div>
+  <div>
+    <mat-paginator [length]="meta.total_items_count" [pageSize]="meta.per_page"></mat-paginator>
+    <app-forms-table [data]="data"
+                     [formFields]="formFields"
+                     (deleteFormEvent)="delete($event)"
+                     (updateFormEvent)="update($event)"
+    ></app-forms-table>
+  </div>
+</div>
+
